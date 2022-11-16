@@ -1,18 +1,20 @@
-var search = document.getElementById("search");
+// var search = document.getElementById("search");
 
-search.addEventListener("keyup", function () {
+// search.addEventListener("keyup", function () {
+$("#search").on("keyup", function () {
   $.ajax({
     url: "data2.php",
-    data: { search: search.value },
+    data: { search: $("#search").val() },
     method: "get",
     dataType: "json",
     success: function (response) {
       $("#data").html("");
       if (response.length == 0) {
-        $("#data").html("<tr><td>" + "data tidak ditemukan" + "</td>" + "<td>" + "data tidak ditemukan" + "</td>" + "<td>" + "data tidak ditemukan" + "</td>" + "<td>" + "data tidak ditemukan" + "</td></tr>");
+        $("#data").html("<tr style='text-align:center'><td colspan='5'>data not found</td></tr>");
       } else {
-        for (var i = 0; i < response.length; i++) {
-          $("#data").append("<tr><td>" + response[i]["nama"] + "</td>" + "<td>" + response[i]["nim"] + "</td>" + "<td>" + response[i]["email"] + "</td>" + "<td>" + response[i]["jurusan"] + "</td></tr>");
+        var inc = 1;
+        for (var i = 0; i < response.length; ++i) {
+          $("#data").append("<tr><td>" + inc++ + "</td>" + "<td>" + response[i]["nama"] + "</td>" + "<td>" + response[i]["nim"] + "</td>" + "<td>" + response[i]["email"] + "</td>" + "<td>" + response[i]["jurusan"] + "</td></tr>");
         }
       }
     },

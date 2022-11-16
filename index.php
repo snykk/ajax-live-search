@@ -21,6 +21,7 @@
         <table class="table table-success table-striped mt-4">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Nama</th>
                     <th>Nim</th>
                     <th>Email</th>
@@ -32,14 +33,16 @@
                 require_once("./db.php");
                 $sql = "SELECT * FROM mahasiswa";
                 $result = $db->query($sql);
-                while ($row = $result->fetch_assoc()) { ?>
+                $index = 1;
+                while ($row = $result->fetch_assoc()) : ?>
                     <tr>
+                        <td><?= $index++ ?></td>
                         <td><?= $row["nama"]; ?></td>
                         <td><?= $row["nim"]; ?></td>
                         <td><?= $row["email"]; ?></td>
                         <td><?= $row["jurusan"]; ?></td>
                     </tr>
-                <?php }; ?>
+                <?php endwhile; ?>
             </tbody>
         </table>
     </div>
@@ -51,23 +54,9 @@
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <!-- <script src="./script.js"></script> -->
-    <!-- <script src="./script2.js"></script> -->
-    <script src="./script3.js"></script>
+    <script src="./script2.js"></script>
+    <!-- <script src="./script3.js"></script> -->
     <!-- <script src="./script4.js"></script> -->
 </body>
 
 </html>
-
-<!--
-CREATE TABLE mahasiswa (
-    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nama VARCHAR(30) NOT NULL,
-    nim VARCHAR(30) NOT NULL,
-    email VARCHAR(30) NOT NULL,
-    jurusan VARCHAR(25) NOT NULL,
-);
-
-INSERT INTO mahasiswa (nama,nim, email, jurusan)
-VALUES
-("Moh. Najib Fikri", "202410102033","iniemail@gmail.com", "Teknologi Informasi"),
-    -->
